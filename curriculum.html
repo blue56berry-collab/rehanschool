@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Rehan School</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+ 
+    :root {
+      --primary: #0ea5e9;
+      --primary-dark: #0284c7;
+      --primary-light: #38bdf8;
+      --accent: #06b6d4;
+      --muted: #6b7280;
+      --muted-light: #9ca3af;
+      --text: #07223a;
+      --text-light: #374151;
+      --background: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --border-focus: #0ea5e9;
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      --border-radius: 12px;
+      --border-radius-sm: 8px;
+    }
+ 
+    * {
+      box-sizing: border-box;
+    }
+ 
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--background);
+      margin: 0;
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+      min-height: 100vh;
+    }
+ 
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 20px;
+    }
+ 
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+ 
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+ 
+    .logo-section:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+ 
+    .logo-section img {
+      height: 48px;
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+ 
+    .logo-section h2 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 1.75rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+ 
+    nav a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: var(--border-radius-sm);
+      transition: all 0.2s ease;
+    }
+ 
+    nav a:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+ 
+    .card {
+      background: var(--surface);
+      padding: 32px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+ 
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient);
+    }
+ 
+    .card h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+ 
+    .card h4 {
+      margin: 24px 0 16px 0;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+ 
+    .contact-info {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      padding: 16px;
+      border-radius: var(--border-radius-sm);
+      border-left: 4px solid var(--primary);
+      margin-bottom: 24px;
+    }
+ 
+    .muted {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+ 
+    .divider {
+      margin: 24px 0;
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+ 
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+ 
+    .form-group {
+      position: relative;
+    }
+ 
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+ 
+    input, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: var(--border-radius-sm);
+      border: 2px solid var(--border);
+      font-size: 15px;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      background: var(--surface);
+      color: var(--text);
+    }
+ 
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+      transform: translateY(-1px);
+    }
+ 
+    input:hover, textarea:hover {
+      border-color: var(--muted-light);
+    }
+ 
+    textarea {
+      grid-column: 1 / -1;
+      min-height: 120px;
+      resize: vertical;
+      font-family: inherit;
+    }
+ 
+    .full {
+      grid-column: 1 / -1;
+    }
+ 
+    .submit-section {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 8px;
+    }
+ 
+    .btn-submit {
+      padding: 14px 28px;
+      border-radius: var(--border-radius-sm);
+      border: none;
+      background: var(--gradient);
+      color: white;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+ 
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+ 
+    .btn-submit:hover::before {
+      left: 100%;
+    }
+ 
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+ 
+    .btn-submit:active {
+      transform: translateY(0);
+      box-shadow: var(--shadow-md);
+    }
+ 
+    .result-message {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: var(--border-radius-sm);
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+    }
+ 
+    .result-message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+ 
+    .result-message.success {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #bbf7d0;
+    }
+ 
+    .result-message.error {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+ 
+    /* Loading state */
+    .btn-submit.loading {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+ 
+    .btn-submit.loading::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      top: 50%;
+      left: 50%;
+      margin-left: -8px;
+      margin-top: -8px;
+    }
+ 
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+ 
+    /* Form validation styles */
+    input:invalid:not(:placeholder-shown), 
+    textarea:invalid:not(:placeholder-shown) {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+ 
+    input:valid:not(:placeholder-shown), 
+    textarea:valid:not(:placeholder-shown) {
+      border-color: #10b981;
+    }
+ 
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px 16px;
+      }
+ 
+      header {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+ 
+      .logo-section h2 {
+        font-size: 1.5rem;
+      }
+ 
+      .card {
+        padding: 24px 20px;
+      }
+ 
+      form {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+ 
+      .btn-submit {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+ 
+    @media (max-width: 480px) {
+      .container {
+        padding: 16px 12px;
+      }
+ 
+      .card {
+        padding: 20px 16px;
+      }
+ 
+      .logo-section img {
+        height: 40px;
+      }
+ 
+      .logo-section h2 {
+        font-size: 1.25rem;
+      }
+    }
+ 
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text: #f8fafc;
+        --text-light: #e2e8f0;
+        --background: #0f172a;
+        --surface: #1e293b;
+        --border: #334155;
+        --muted: #94a3b8;
+        --muted-light: #64748b;
+      }
+ 
+      body {
+        background-image: 
+          radial-gradient(circle at 25% 25%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+      }
+ 
+      .contact-info {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      }
+ 
+      input, textarea {
+        background: var(--surface);
+        color: var(--text);
+      }
+    }
+ 
+    /* Accessibility improvements */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+ 
+    /* Focus visible for keyboard navigation */
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-section" onclick="goTo('index.html')">
+        <img src="https://rehanschool.net/wp-content/uploads/2020/12/cropped-Rehan-Icon.png" alt="Rehan School Logo">
+        <h2>Contact Us</h2>
+      </div>
+      <nav>
+        <a href="javascript:goTo('index.html')">Home</a>
+      </nav>
+    </header>
+ 
+    <div class="card">
+      <h3>Visit or Contact</h3>
+      <div class="contact-info">
+        <p class="muted">
+          📍 Office: R554+WF9, Sector 50 C Korangi, Karachi<br>
+          📞 UAN: +92-304-111-6044<br>
+          ✉ Email: info@rehanschool.net
+        </p>
+      </div>
+ 
+      <hr class="divider">
+ 
+      <h4>Send Us a Message</h4>
+      <form id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        </div>
+ 
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+        </div>
+ 
+        <div class="form-group full">
+          <label for="subject">Subject *</label>
+          <input type="text" id="subject" name="subject" placeholder="What is this message about?" required>
+        </div>
+ 
+        <div class="form-group full">
+          <label for="message">Message *</label>
+          <textarea id="message" name="message" placeholder="Write your detailed message here..." required></textarea>
+        </div>
+ 
+        <div class="submit-section">
+          <button type="submit" class="btn-submit">
+            <span>Send Message</span>
+          </button>
+        </div>
+      </form>
+ 
+      <div id="result" class="result-message"></div>
+    </div>
+  </div>
+ 
+  <script>
+    function goTo(path) { 
+      window.location.href = path; 
+    }
+ 
+    function handleSubmit(e) {
+      e.preventDefault();
+      const submitBtn = e.target.querySelector('.btn-submit');
+      const resultDiv = document.getElementById('result');
+      const form = document.getElementById('contactForm');
+ 
+      // Add loading state
+      submitBtn.classList.add('loading');
+      submitBtn.querySelector('span').textContent = 'Sending...';
+ 
+      // Simulate API call delay
+      setTimeout(() => {
+        try {
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData.entries());
+ 
+          // This demo doesn't post to server. Save to localStorage (demo) and show success.
+          const storage = JSON.parse(localStorage.getItem('rehanschool_messages') || "[]");
+          storage.push({ ...data, time: new Date().toISOString() });
+          localStorage.setItem('rehanschool_messages', JSON.stringify(storage));
+ 
+          // Show success message
+          resultDiv.textContent = "✅ Thank you! Your message has been received. We'll get back to you soon.";
+          resultDiv.className = "result-message success show";
+ 
+          // Reset form
+          form.reset();
+ 
+        } catch (error) {
+          // Show error message
+          resultDiv.textContent = "❌ Sorry, there was an error sending your message. Please try again.";
+          resultDiv.className = "result-message error show";
+        } finally {
+          // Remove loading state
+          submitBtn.classList.remove('loading');
+          submitBtn.querySelector('span').textContent = 'Send Message';
+ 
+          // Hide message after 5 seconds
+          setTimeout(() => {
+            resultDiv.classList.remove('show');
+          }, 5000);
+        }
+      }, 1500);
+    }
+ 
+    // Add some interactivity
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add smooth scrolling
+      document.documentElement.style.scrollBehavior = 'smooth';
+ 
+      // Add form validation feedback
+      const inputs = document.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+          if (this.value && !this.checkValidity()) {
+            this.style.borderColor = '#ef4444';
+          } else if (this.value && this.checkValidity()) {
+            this.style.borderColor = '#10b981';
+          }
+        });
+ 
+        input.addEventListener('input', function() {
+          if (this.style.borderColor === 'rgb(239, 68, 68)' && this.checkValidity()) {
+            this.style.borderColor = '#10b981';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
